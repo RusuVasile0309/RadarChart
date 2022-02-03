@@ -8,10 +8,10 @@ const wideFormat = format('.3r');
 
 const RadarComponent = ({ domains, data }) => {
 
-
+    console.log(data)
 
     return (
-        <div style={{ margin: "200px" }}>
+        <div style={{ marginLeft: "60px", marginTop: "200px" }}>
             <RadarChart
                 style={{
                     axes: {
