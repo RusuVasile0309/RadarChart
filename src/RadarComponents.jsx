@@ -8,15 +8,20 @@ const wideFormat = format('.3r');
 
 const RadarComponent = ({ domains, data }) => {
 
-    console.log(data)
-
     return (
         <div style={{ marginLeft: "60px", marginTop: "200px" }}>
             <RadarChart
                 style={{
                     axes: {
-                        line: {},
-                        ticks: {},
+                        line: {
+                            fillOpacity: 0.8,
+                            strokeWidth: 0.5,
+                            strokeOpacity: 0.8
+                        },
+                        ticks: {
+                            fillOpacity: 1,
+                            strokeOpacity: 1
+                        },
                         text: {}
                     },
                     labels: {
@@ -32,6 +37,7 @@ const RadarComponent = ({ domains, data }) => {
                 data={data}
                 tickFormat={t => basicFormat(t)}
                 startingAngle={0}
+                renderAxesOverPolygons={true}
                 domains={domains}
                 width={800}
                 height={800}

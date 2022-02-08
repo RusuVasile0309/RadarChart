@@ -1,11 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
+
 import RadarComponent from './RadarComponents';
 import SliderComponent from './Slider';
 import { useState } from 'react';
 import "antd/dist/antd.css";
 function App() {
-
   const getAttribute = (data, nameOfAtribute) => {
 
     switch (nameOfAtribute) {
@@ -36,6 +36,7 @@ function App() {
     }
   }
 
+
   const [data1, setData1] = useState({
     name: 'Jon Snow',
     Speed: 20,
@@ -52,8 +53,7 @@ function App() {
     Bald: 3,
     fill: 'rgba(24,250,20,0.8)',
     stroke: 'rgba(114,172,240,1)'
-  },
-  );
+  });
   const [data2, setData2] = useState({
     name: 'Peter Parker',
     Speed: 30,
@@ -71,7 +71,6 @@ function App() {
     fill: 'rgba(254,0,20,0.8)',
     stroke: 'rgba(114,172,240,1)'
   });
-
   const domains = [
     {
       name: "Speed",
@@ -136,11 +135,12 @@ function App() {
   ]
 
   const onChange = (value, end, start, type) => {
-    const value1 = (end - start) * value[0] / 100 + start;
-    const value2 = (end - start) * value[1] / 100 + start;
-    console.log((end - start) * value[0] / 100);
-    console.log((end - start) * value[1] / 100);
 
+    console.log(start);
+    let value1 = (end - start) * value[0] / 100 + start;
+    let value2 = (end - start) * value[1] / 100 + start;
+
+    console.log(value);
     switch (type) {
       case 'Speed':
         setData1({ ...data1, Speed: value1 });
@@ -194,7 +194,6 @@ function App() {
   }
 
   const onChangeInputLeft = (value, type) => {
-    console.log(type);
     switch (type) {
       case 'Power':
         setData1({ ...data1, Power: value });
@@ -235,7 +234,6 @@ function App() {
     }
   }
   const onChangeInputRight = (value, type) => {
-    console.log(type);
     switch (type) {
       case 'Power':
         setData2({ ...data2, Power: value });

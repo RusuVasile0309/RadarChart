@@ -7,6 +7,7 @@ const SliderComponent = ({ start, end, nameTag, onChange, defaultValues, onChang
         100: end
     }
 
+
     return (<div style={{ display: "flex", flexDirection: "column" }}>
         <h3 style={{ marginRight: "350px", marginTop: "15px" }}>{nameTag}</h3>
         <div style={{ height: "30px", display: "flex", flexDirection: "row" }}>
