@@ -15,14 +15,14 @@ const MainComponent = ({ data }) => {
             };
             if (i === 0) {
                 intermediaryValues[i] = {
-                    fill: 'rgba(24,250,20,0.8)',
-                    stroke: 'rgba(114,172,240,1)'
+                    fill: 'blue',
+                    stroke: 'blue'
                 }
             }
             if (i === 1) {
                 intermediaryValues[i] = {
                     fill: 'rgba(254,0,20,0.8)',
-                    stroke: 'rgba(114,172,240,1)'
+                    stroke: 'red'
                 }
             }
         }

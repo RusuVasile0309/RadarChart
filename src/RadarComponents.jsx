@@ -10,14 +10,14 @@ const RadarComponent = ({ domains, data }) => {
     const [borderData, setBorderData] = useState({
         name: 'Border',
         fill: 'grey',
-        stroke: 'rgba(114,172,240,1)'
+        stroke: 'grey'
     });
 
     useEffect(() => {
         let intermediaryBorder = {
             name: 'Border',
             fill: 'grey',
-            stroke: 'rgba(114,172,240,1)'
+            stroke: 'grey'
         };
         domains.map((element) => {
             intermediaryBorder[element.name] = element.domain[1];
@@ -46,9 +46,9 @@ const RadarComponent = ({ domains, data }) => {
                         fontSize: 12
                     },
                     polygons: {
-                        strokeWidth: 0.5,
+                        strokeWidth: 1.5,
                         strokeOpacity: 1,
-                        fillOpacity: 0.1
+                        fillOpacity: 0.15
                     }
 
                 }}
