@@ -1,29 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { format } from 'd3-format';
 
 import { RadarChart } from 'react-vis';
 
 const basicFormat = format('.2r');
-const wideFormat = format('.3r');
 
 const RadarComponent = ({ domains, data }) => {
-    const borderMaxData = {
-        name: 'Max',
-        Speed: 30,
-        Power: 100,
-        Luck: 777,
-        Attitude: 10,
-        Autonomy: 50,
-        Range: 180,
-        Weight: 120.8,
-        Battery: 2500,
-        Awesomeness: 100,
-        Fair: 2.5,
-        Logical: 10,
-        Bald: 50,
+
+    const [borderData, setBorderData] = useState({
+        name: 'Border',
         fill: 'grey',
         stroke: 'rgba(114,172,240,1)'
-    }
+    });
+
+    useEffect(() => {
+        let intermediaryBorder = {
+            name: 'Border',
+            fill: 'grey',
+            stroke: 'rgba(114,172,240,1)'
+        };
+        domains.map((element) => {
+            intermediaryBorder[element.name] = element.domain[1];
+        })
+        setBorderData(intermediaryBorder);
+
+    }, [domains, data]);
+
     return (
         <div style={{ marginLeft: "60px", marginTop: "200px" }}>
             <RadarChart
@@ -50,7 +52,7 @@ const RadarComponent = ({ domains, data }) => {
                     }
 
                 }}
-                data={[...data, borderMaxData]}
+                data={[...data, borderData]}
                 tickFormat={t => basicFormat(t)}
                 startingAngle={0}
                 renderAxesOverPolygons={true}

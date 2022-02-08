@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Slider, InputNumber, Col, Row } from "antd"
+
+import { Slider, InputNumber } from "antd"
 
 const SliderComponent = ({ start, end, nameTag, onChange, defaultValues, onChangeInputLeft, onChangeInputRight }) => {
     const marks = {
@@ -7,7 +7,7 @@ const SliderComponent = ({ start, end, nameTag, onChange, defaultValues, onChang
         100: end
     }
 
-
+    if (nameTag === "Luck") console.log(defaultValues[0])
     return (<div style={{ display: "flex", flexDirection: "column" }}>
         <h3 style={{ marginRight: "350px", marginTop: "15px" }}>{nameTag}</h3>
         <div style={{ height: "30px", display: "flex", flexDirection: "row" }}>
