@@ -27,6 +27,7 @@ const SliderComponent = ({ start, end, nameTag, onChange, defaultValues, onChang
                     marks={marks}
                     onChange={onChange}
                     tooltipVisible={false}
+                    value={[(defaultValues[0] - start) * 100 / (end - start), (defaultValues[1] - start) * 100 / (end - start)]}
                 />
             </div>
             <div style={{ width: "10%" }}>
