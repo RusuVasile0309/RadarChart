@@ -4,81 +4,56 @@ import RadarComponent from "./RadarComponents";
 import SliderComponent from "./Slider";
 
 const MainComponent = ({ data }) => {
-    const [domains, setDomains] = useState([]);
-    const [values, setValues] = useState([]);
-    useEffect(() => {
-        const intermediaryDomains = [];
-        let intermediaryValues = [];
-        for (let i = 0; i <= data[0].values.length - 1; i++) {
-            intermediaryValues[i] = {
-                name: `Name${i}`
-            };
-            if (i === 0) {
-                intermediaryValues[i] = {
-                    fill: 'blue',
-                    stroke: 'blue'
-                }
-            }
-            if (i === 1) {
-                intermediaryValues[i] = {
-                    fill: 'rgba(254,0,20,0.8)',
-                    stroke: 'red'
-                }
-            }
-        }
-        data.map((element) => {
-            intermediaryDomains.push({
-                name: element.label,
-                domain: [element.min, element.max],
-                getValue: d => d[element.label]
-            })
-            for (let i = 0; i <= element.values.length - 1; i++) {
-                intermediaryValues[i][element.label] = element.values[i];
-            }
-        })
-        setDomains(intermediaryDomains);
-        setValues(intermediaryValues);
-    }, []);
+    const [modifiedData, setModifiedData] = useState([...data]);
 
     const onChange = (value, end, start, type) => {
 
         let value1 = (end - start) * value[0] / 100 + start;
         let value2 = (end - start) * value[1] / 100 + start;
-        let intermediaryValues = values;
-        intermediaryValues[0][type] = value1;
-        intermediaryValues[1][type] = value2;
-        setValues([...intermediaryValues]);
+        let intermediaryValues = modifiedData;
+        intermediaryValues.map((element) => {
+            if (element.label === type) {
+                element.values[0] = value1;
+                element.values[1] = value2;
+            }
+        })
+        setModifiedData([...intermediaryValues]);
     }
 
     const onChangeInputLeft = (value, type) => {
-        const intermediaryValues = values;
-        intermediaryValues[0][type] = value;
-        console.log(intermediaryValues[0][type])
-        setValues([...intermediaryValues]);
+        const intermediaryValues = modifiedData;
+        intermediaryValues.map((element) => {
+            if (element.label === type) {
+                element.values[0] = value;
+            }
+        })
+        setModifiedData([...intermediaryValues]);
     }
 
     const onChangeInputRight = (value, type) => {
-        const intermediaryValues = values;
-        intermediaryValues[1][type] = value;
-        console.log(intermediaryValues[1][type]);
-        setValues([...intermediaryValues]);
+        const intermediaryValues = modifiedData;
+        intermediaryValues.map((element) => {
+            if (element.label === type) {
+                element.values[1] = value;
+            }
+        })
+        setModifiedData([...intermediaryValues]);
     }
-
     return (
         <div style={{ display: "flex", flexDirection: "row" }}>
             <div style={{ height: "100%", width: "40%" }}>
-                <RadarComponent domains={domains} data={values} />
+                <RadarComponent data={modifiedData} />
             </div>
             <div style={{ marginTop: "200px", height: "100%", width: "60%" }}>
-                {domains.map((elem) =>
+                {modifiedData.map((elem) =>
                     <SliderComponent
-                        start={elem.domain[0]}
-                        end={elem.domain[1]}
-                        nameTag={elem.name}
-                        onChange={(value) => onChange(value, elem.domain[1], elem.domain[0], elem.name)}
-                        defaultValues={[values[0][elem.name], values[1][elem.name]]}
-                        onChangeInputLeft={(value) => onChangeInputLeft(value, elem.name)}
-                        onChangeInputRight={(value) => onChangeInputRight(value, elem.name)}
+                        start={elem.min}
+                        end={elem.max}
+                        nameTag={elem.label}
+                        onChange={(value) => onChange(value, elem.max, elem.min, elem.label)}
+                        defaultValues={[elem.values[0], elem.values[1]]}
+                        onChangeInputLeft={(value) => onChangeInputLeft(value, elem.label)}
+                        onChangeInputRight={(value) => onChangeInputRight(value, elem.label)}
                     />)
                 }
 

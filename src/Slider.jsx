@@ -6,7 +6,7 @@ const SliderComponent = ({ start, end, nameTag, onChange, defaultValues, onChang
         0: start,
         100: end
     }
-
+    //console.log(defaultValues)
     if (nameTag === "Luck") console.log(defaultValues[0])
     return (<div style={{ display: "flex", flexDirection: "column" }}>
         <h3 style={{ marginRight: "350px", marginTop: "15px" }}>{nameTag}</h3>

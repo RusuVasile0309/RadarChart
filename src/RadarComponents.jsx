@@ -5,7 +5,43 @@ import { RadarChart } from 'react-vis';
 
 const basicFormat = format('.2r');
 
-const RadarComponent = ({ domains, data }) => {
+const RadarComponent = ({ data }) => {
+    const [domains, setDomains] = useState([]);
+    const [values, setValues] = useState([]);
+
+    useEffect(() => {
+        const intermediaryDomains = [];
+        let intermediaryValues = [];
+        for (let i = 0; i <= data[0].values.length - 1; i++) {
+            intermediaryValues[i] = {
+                name: `Name${i}`
+            };
+            if (i === 0) {
+                intermediaryValues[i] = {
+                    fill: 'blue',
+                    stroke: 'blue'
+                }
+            }
+            if (i === 1) {
+                intermediaryValues[i] = {
+                    fill: 'rgba(254,0,20,0.8)',
+                    stroke: 'red'
+                }
+            }
+        }
+        data.map((element) => {
+            intermediaryDomains.push({
+                name: element.label,
+                domain: [element.min, element.max],
+                getValue: d => d[element.label]
+            })
+            for (let i = 0; i <= element.values.length - 1; i++) {
+                intermediaryValues[i][element.label] = element.values[i];
+            }
+        })
+        setDomains(intermediaryDomains);
+        setValues(intermediaryValues);
+    }, [data]);
 
     const [borderData, setBorderData] = useState({
         name: 'Border',
@@ -46,13 +82,13 @@ const RadarComponent = ({ domains, data }) => {
                         fontSize: 12
                     },
                     polygons: {
-                        strokeWidth: 1.5,
+                        strokeWidth: 2.5,
                         strokeOpacity: 1,
                         fillOpacity: 0.15
                     }
 
                 }}
-                data={[...data, borderData]}
+                data={[...values, borderData]}
                 tickFormat={t => basicFormat(t)}
                 startingAngle={0}
                 renderAxesOverPolygons={true}
