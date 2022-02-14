@@ -6,12 +6,11 @@ const SliderComponent = ({ start, end, nameTag, onChange, defaultValues, onChang
         0: start,
         100: end
     }
-    //console.log(defaultValues)
-    if (nameTag === "Luck") console.log(defaultValues[0])
-    return (<div style={{ display: "flex", flexDirection: "column" }}>
-        <h3 style={{ marginRight: "350px", marginTop: "15px" }}>{nameTag}</h3>
-        <div style={{ height: "30px", display: "flex", flexDirection: "row" }}>
-            <div style={{ width: "10%" }}>
+
+    return (<div style={{ display: "flex", flexDirection: "column", transform: "scale(0.8)" }}>
+        <h3 style={{ textAlign: " center" }}>{nameTag}</h3>
+        <div style={{ display: "flex", flexDirection: "row" }}>
+            <div style={{ width: "10%", transform: "scale(0.9)" }}>
                 <InputNumber
                     min={start}
                     max={defaultValues[1]}
@@ -19,7 +18,7 @@ const SliderComponent = ({ start, end, nameTag, onChange, defaultValues, onChang
                     onChange={onChangeInputLeft}
                 />
             </div>
-            <div style={{ width: "60%" }}>
+            <div style={{ width: "60%", transform: "scale(0.85)" }}>
                 <Slider
                     disabled={false}
                     defaultValue={[defaultValues[0] * 100 / (end - start), defaultValues[1] * 100 / (end - start)]}
@@ -30,7 +29,7 @@ const SliderComponent = ({ start, end, nameTag, onChange, defaultValues, onChang
                     value={[(defaultValues[0] - start) * 100 / (end - start), (defaultValues[1] - start) * 100 / (end - start)]}
                 />
             </div>
-            <div style={{ width: "10%" }}>
+            <div style={{ width: "10%", transform: "scale(0.9)" }}>
                 <InputNumber
                     min={start}
                     max={end}

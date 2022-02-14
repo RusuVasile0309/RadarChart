@@ -93,8 +93,8 @@ const RadarComponent = ({ data }) => {
                 startingAngle={0}
                 renderAxesOverPolygons={true}
                 domains={domains}
-                width={800}
-                height={800}
+                width={600}
+                height={600}
                 margin={{ left: 80, right: 80, top: 80, bottom: 80 }}
 
             />

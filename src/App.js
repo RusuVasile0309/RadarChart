@@ -36,15 +36,15 @@ function App() {
     },
     {
       label: "Range",
-      min: 0,
+      min: -180,
       max: 180,
-      values: [0, 180],
+      values: [-180, 180],
     },
     {
       label: "Weight",
       min: 40.5,
       max: 200,
-      values: [40, 200],
+      values: [40.5, 200],
     },
     {
       label: "Battery",

@@ -44,17 +44,20 @@ const MainComponent = ({ data }) => {
             <div style={{ height: "100%", width: "40%" }}>
                 <RadarComponent data={modifiedData} />
             </div>
-            <div style={{ marginTop: "200px", height: "100%", width: "60%" }}>
+            <div style={{ height: "100%", width: "50%" }}>
                 {modifiedData.map((elem) =>
-                    <SliderComponent
-                        start={elem.min}
-                        end={elem.max}
-                        nameTag={elem.label}
-                        onChange={(value) => onChange(value, elem.max, elem.min, elem.label)}
-                        defaultValues={[elem.values[0], elem.values[1]]}
-                        onChangeInputLeft={(value) => onChangeInputLeft(value, elem.label)}
-                        onChangeInputRight={(value) => onChangeInputRight(value, elem.label)}
-                    />)
+                    <div style={{ margin: "0px" }}>
+                        <SliderComponent
+                            start={elem.min}
+                            end={elem.max}
+                            nameTag={elem.label}
+                            onChange={(value) => onChange(value, elem.max, elem.min, elem.label)}
+                            defaultValues={[elem.values[0], elem.values[1]]}
+                            onChangeInputLeft={(value) => onChangeInputLeft(value, elem.label)}
+                            onChangeInputRight={(value) => onChangeInputRight(value, elem.label)}
+                        />
+                    </div>
+                )
                 }
 
             </div>
